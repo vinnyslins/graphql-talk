@@ -7,6 +7,10 @@
   "scripts": {
     "start": "node src"
   },
+  "dependencies": {
+    "apollo-server": "^2.21.0",
+    "graphql": "^15.5.0"
+  },
   "devDependencies": {
     "eslint": "^7.21.0",
     "eslint-config-standard": "^16.0.2",
