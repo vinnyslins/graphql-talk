@@ -1,0 +1,10 @@
+{
+  "name": "graphql-talk",
+  "version": "1.0.0",
+  "description": "Apollo server example from my GraphQL talk",
+  "author": "Vinnys Lins",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src"
+  }
+}
