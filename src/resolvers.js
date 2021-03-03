@@ -16,13 +16,35 @@ const resolvers = {
 
   Mutation: {
     createBook: (_, { input }) => {
+      const lastBook = data.books[data.books.length - 1]
+
       const book = {
-        id: data.books.length + 1,
+        id: (lastBook && lastBook.id + 1) || 1,
         title: input.title,
         authorId: parseInt(input.authorId)
       }
 
       data.books.push(book)
+
+      return book
+    },
+
+    updateBook: (_, { id, input }) => {
+      const book = data.books.find(item => item.id === parseInt(id))
+      if (!book) return null
+
+      book.title = input.title
+      book.authorId = parseInt(input.authorId)
+
+      return book
+    },
+
+    deleteBook: (_, { id }) => {
+      const index = data.books.findIndex(item => item.id === parseInt(id))
+      if (index === -1) return null
+
+      const book = data.books[index]
+      data.books.splice(index, 1)
 
       return book
     }
