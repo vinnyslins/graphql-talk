@@ -1,34 +1,11 @@
-const { ApolloServer, gql } = require('apollo-server')
+const fs = require('fs')
+const path = require('path')
+const { ApolloServer } = require('apollo-server')
 
-const books = [
-  {
-    title: 'The Awakening',
-    author: 'Kate Chopin'
-  },
-  {
-    title: 'City of Glass',
-    author: 'Paul Auster'
-  }
-]
+const resolvers = require('./resolvers')
+const typeDefs = fs.readFileSync(path.join(__dirname, 'types.graphql'), 'utf-8')
 
-const typeDefs = gql`
-  type Book {
-    title: String
-    author: String
-  }
-
-  type Query {
-    books: [Book]
-  }
-`
-
-const resolvers = {
-  Query: {
-    books: () => books
-  }
-}
-
-const server = new ApolloServer({ typeDefs, resolvers })
+const server = new ApolloServer({ resolvers, typeDefs })
 
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`)
