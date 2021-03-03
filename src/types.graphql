@@ -17,6 +17,7 @@ type Book {
 }
 
 type Query {
+  book(id: ID!): Book
   books: [Book!]!
   authors: [Author!]!
 }

@@ -10,6 +10,7 @@ const resolvers = {
   },
 
   Query: {
+    book: (_, { id }) => data.books.find(book => book.id === parseInt(id)),
     books: () => data.books,
     authors: () => data.authors
   },
